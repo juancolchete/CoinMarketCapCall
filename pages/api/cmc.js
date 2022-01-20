@@ -2,11 +2,6 @@
 
 var axios = require('axios');
 export default function handler(req, res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
 
   var config = {
     method: 'get',
