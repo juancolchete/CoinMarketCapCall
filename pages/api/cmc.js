@@ -1,7 +1,5 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 var axios = require('axios');
-export default function handler(req, res) {
+export default async (req, res)=> {
 
   var config = {
     method: 'get',
