@@ -3,25 +3,23 @@ const axios = require('axios');
 const https = require('https');
 require('dotenv').config();
 const app = express();
-
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
+var cors = require('cors');
+app.use(cors());
 
 app.use(express.json({ extended: false}));
-app.get('/', (req, res) => {
-  const httpsAgent = new https.Agent({ rejectUnauthorized: false });
-  axios.defaults.httpsAgent = httpsAgent;
+app.get('/products/:id', cors(), function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for a Single Route'})
+})
+app.get('/',cors(), (req, res,next) => {
   const headers = {
-    'X-CMC_PRO_API_KEY': process.env.CMC_API_KEY
+    'X-CMC_PRO_API_KEY': process.env.API_KEY
   }
-  axios.get('http://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',{headers})
+  axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=${req.headers.id}`,{headers})
   .then(response => {
     res.json(response.data);
   })
   .catch(error => {
-    console.log(error);
+    res.send("error"+error);
   });
 });
 
