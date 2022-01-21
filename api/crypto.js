@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
   const httpsAgent = new https.Agent({ rejectUnauthorized: false });
   axios.defaults.httpsAgent = httpsAgent;
   const headers = {
-    'X-CMC_PRO_API_KEY': process.env.CMC_API_KEY
+    'X-CMC_PRO_API_KEY': process.env.API_KEY
   }
   axios.get('http://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',{headers})
   .then(response => {
