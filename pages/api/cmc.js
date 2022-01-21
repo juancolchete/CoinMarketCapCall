@@ -1,6 +1,15 @@
-var axios = require('axios');
-export default async (req, res)=> {
+const express = require('express');
+const axios = require('axios');
+const https = require('https');
+require('dotenv').config();
+const router = express.Router();
 
+router.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
+router.get('/', (req, res) => {
   var config = {
     method: 'get',
     url: `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=${req.query.id}`,
@@ -17,4 +26,7 @@ export default async (req, res)=> {
     .catch(function (error) {
       console.log(error);
     });
-}
+  });
+});
+
+module.exports = router;
