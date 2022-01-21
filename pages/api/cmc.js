@@ -12,7 +12,7 @@ router.use((req, res, next) => {
 router.get('/', (req, res) => {
   var config = {
     method: 'get',
-    url: `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=${req.query.id}`,
+    url: `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=1`,
     headers: {
       'X-CMC_PRO_API_KEY': process.env.API_KEY,
       'Accept': 'application/json'
